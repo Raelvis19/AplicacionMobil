@@ -31,3 +31,15 @@ export const tareasApi = {
   eliminar: (token: string, id: number) =>
     request<{ mensaje: string }>(`/v2/tareas/${id}`, { method: 'DELETE', token }),
 };
+
+export type Materia = { id: number; nombre: string; creadoEn: string; usuarioId: number };
+
+export const materiasApi = {
+  listar: (token: string) => request<Materia[]>('/v2/materias', { token }),
+  crear: (token: string, nombre: string) =>
+    request<Materia>('/v2/materias', { method: 'POST', token, body: { nombre } }),
+  actualizar: (token: string, id: number, nombre: string) =>
+    request<Materia>(`/v2/materias/${id}`, { method: 'PUT', token, body: { nombre } }),
+  eliminar: (token: string, id: number) =>
+    request<{ mensaje: string }>(`/v2/materias/${id}`, { method: 'DELETE', token }),
+};
